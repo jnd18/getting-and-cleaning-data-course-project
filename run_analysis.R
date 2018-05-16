@@ -66,7 +66,10 @@ remove(X_test, y_test, subject_test,
 
 # Keep only the variables measuring mean and standard deviation
 # as well as the subject and activity variables
-data <- data %>% select(matches("subject|activity|mean|std"))
+# Then sort by subject and activity
+data <- data %>%
+    select(matches("subject|activity|mean\\(\\)|std\\(\\)")) %>%
+    arrange(subject, activity)
 
 # Create the second dataset of averages for each each variable
 # for each activity and each subject
