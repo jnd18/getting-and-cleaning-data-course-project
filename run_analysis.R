@@ -44,3 +44,6 @@ names(y) <- "activity"
 
 # Use the activity labels to convert activity to a factor
 # with meaningful names
+y <- y %>% mutate(activity = factor(activity_labels[activity],
+                                    levels = activity_labels))
+
