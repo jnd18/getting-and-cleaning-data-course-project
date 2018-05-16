@@ -55,3 +55,21 @@ subject <- bind_rows(subject_test, subject_train)
 # Change the variable name to "subject"
 names(subject) <- "subject"
 
+# Assemble X, y, and subject into one large data frame
+data <- bind_cols(subject, y, X)
+
+# Remove all the intermediate variables that are no longer needed
+remove(X_test, y_test, subject_test,
+       X_train, y_train, subject_train,
+       feature_names, activity_labels,
+       X, y, subject)
+
+# Keep only the variables measuring mean and standard deviation
+# as well as the subject and activity variables
+data <- data %>% select(matches("subject|activity|mean|std"))
+
+# Create the second dataset of averages for each each variable
+# for each activity and each subject
+average_data <- data %>%
+    group_by(subject, activity) %>%
+    summarize_all(mean)
