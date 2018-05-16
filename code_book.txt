@@ -3,7 +3,11 @@ contains information about the signals and the variables estimated from the sign
 that in the two processed datasets I've created, the only variables estimated from the signals are the mean and standard
 deviation. Furthermore, the "Additional vectors" or "angle" variables described at the end of the file have also been
 eliminated. The last thing to note is that in the second dataset, the variables are the averages of the variables in the first
-dataset, where the average is taken over all observations for a given subject/activity pair. The features_info.txt is reproduced
+dataset, where the average is taken over all observations for a given subject/activity pair. 
+
+All accelation variables are measured in g's (standard gravitational units). All angular velocities are measured in radians/s.
+
+The features_info.txt is reproduced
 below.
 
 ===========================================================================================
