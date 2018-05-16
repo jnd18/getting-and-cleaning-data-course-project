@@ -15,15 +15,32 @@
 library(tidyverse)
 
 # Read in all the files
+# read_table2 can account for variable line lengths and is needed when
+# reading in features.txt in order to get a two column data frame
 X_test <- read_table("test/X_test.txt", col_names = FALSE)
 y_test <- read_table("test/y_test.txt", col_names = FALSE)
 X_train <- read_table("train/X_train.txt", col_names = FALSE)
 y_train <- read_table("train/y_train.txt", col_names = FALSE)
-feature_names <- read_table("features.txt", col_names = FALSE)
+feature_names <- read_table2("features.txt", col_names = FALSE)
 activity_labels <- read_table("activity_labels.txt", col_names = FALSE)
+
+# Convert feature_names and activity_levels to character vectors
+# (from data frames) by pulling out the second column
+# This discards the leading numbers
+feature_names <- feature_names[[2]]
+activity_labels <- activity_labels[[2]]
 
 # Assemble X_test and X_train
 X <- bind_rows(X_test, X_train)
 
 # Apply the feature names to the X data frame
-names(X) <- feature_names$X1
+names(X) <- feature_names
+
+# Assemble y_test and y_train
+y <- bind_rows(y_test, y_train)
+
+# Change the variable name to "activity"
+names(y) <- "activity"
+
+# Use the activity labels to convert activity to a factor
+# with meaningful names
