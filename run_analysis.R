@@ -19,8 +19,10 @@ library(tidyverse)
 # reading in features.txt in order to get a two column data frame
 X_test <- read_table("test/X_test.txt", col_names = FALSE)
 y_test <- read_table("test/y_test.txt", col_names = FALSE)
+subject_test <- read_table("test/subject_test.txt", col_names = FALSE)
 X_train <- read_table("train/X_train.txt", col_names = FALSE)
 y_train <- read_table("train/y_train.txt", col_names = FALSE)
+subject_train <- read_table("train/subject_train.txt", col_names = FALSE)
 feature_names <- read_table2("features.txt", col_names = FALSE)
 activity_labels <- read_table("activity_labels.txt", col_names = FALSE)
 
@@ -46,4 +48,10 @@ names(y) <- "activity"
 # with meaningful names
 y <- y %>% mutate(activity = factor(activity_labels[activity],
                                     levels = activity_labels))
+
+# Assemble subject_test and subject_train
+subject <- bind_rows(subject_test, subject_train)
+
+# Change the variable name to "subject"
+names(subject) <- "subject"
 
