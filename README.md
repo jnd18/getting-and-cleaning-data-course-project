@@ -39,6 +39,6 @@ The original data source had the accelerometer and gyroscope measurements separa
 
 The second dataset is created by taking the average of each variable (except subject and activity) for each subject and activity combination. The second data set remains sorted by subject then activity. This completes the creation and processing of the second data set.
 
-For the complete details, see the run_analysis.R script which performs the whole analysis. 
+For the complete details, see the run_analysis.R script which performs the whole analysis. To use the script yourself, download the original data using the link above, unzip the archive, and extract the folder inside. Set your working directory to that folder, and then run the script.
 
 Finally, the R function write.table (with row.numbers = FALSE) was used to export the resulting datasets to text files. This results in a text file with variable names as the first row and every other row an observation with columns separated by a single space.
